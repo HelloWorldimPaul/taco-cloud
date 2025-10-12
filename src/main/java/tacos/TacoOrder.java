@@ -27,6 +27,9 @@ public class TacoOrder implements Serializable {
 
     private Date placedAt = new Date();
 
+    @ManyToOne
+    private User user;
+
     @NotBlank(message="Delivery name is required")
     private String deliveryName;
 
@@ -54,12 +57,16 @@ public class TacoOrder implements Serializable {
 
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity=Taco.class)
     private List<Taco> tacos = new ArrayList<>();
 
-    public void addTaco(Taco taco){
+    public void addTaco(Taco design) {
+        this.tacos.add(design);
+    }
 
-        this.tacos.add(taco);
+    @PrePersist
+    void placedAt() {
+        this.placedAt = new Date();
     }
 
 
