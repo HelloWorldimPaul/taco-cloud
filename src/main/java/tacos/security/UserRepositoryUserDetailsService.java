@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import tacos.User;
 import tacos.data.UserRepository;
 
-@Service
+
 public class UserRepositoryUserDetailsService 
         implements UserDetailsService {
 
